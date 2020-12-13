@@ -1,0 +1,16 @@
+<div>
+  <%= f = form_for @changeset, "#", [phx_change: :update] %>
+    <div>
+      <%= label f, :name, "Parent name" %>
+      <%= text_input f, :name %>
+    </div>
+    <%= for child_form <- inputs_for(f, :children) do %>
+      <div>
+        <%= hidden_inputs_for(child_form) %>
+        <%= checkbox  child_form, :selected %>
+        <span><%= child_form.data.name %></span>
+        <span><%= child_form.data.age %></span>
+      </div>
+    <% end %>
+  </form>
+</div>
